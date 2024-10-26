@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meyerbro +MEV Solana Validator</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Fonts and Colors */
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background: linear-gradient(to right, #f8f9fb, #e2e7ef);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 800px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Header */
+        header {
+            margin-bottom: 20px;
+        }
+
+        header img {
+            max-width: 150px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* Information Section */
+        .info {
+            font-size: 1.1em;
+            color: #333;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        /* Key Information */
+        .key-info {
+            background-color: #f0f4f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .key-label {
+            font-weight: bold;
+        }
+
+        /* Button */
+        .copy-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #1976d2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+            outline: none;
+        }
+
+        .copy-btn:hover {
+            background-color: #155a9a;
+        }
+
+        /* Copy Confirmation */
+        .copy-confirmation {
+            font-size: 0.9em;
+            color: green;
+            margin-top: 8px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .copy-confirmation.active {
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <img src="https://meyerbro.s3.eu-west-2.amazonaws.com/meyerbro-validator-logo.jpg" alt="Meyerbro Validator Logo">
+            <h1>Meyerbro +MEV Solana Validator</h1>
+            <p>Validating since June 2021 with high-reliability infrastructure.</p>
+        </header>
+
+        <div class="info">
+            <p>
+                Our validator operates on a Threadripper PRO 7975WX CPU, leveraging a robust 10Gbps network connection for optimal performance. We ensure high availability and reliability in a secure datacenter.
+            </p>
+
+            <h2>Validator Information</h2>
+            <div class="key-info">
+                <p><span class="key-label">Identity Key:</span> 61QB1Evn9E3noQtpJm4auFYyHSXS5FPgqKtPgwJJfEQk</p>
+                <p><span class="key-label">Vote Key:</span> <span id="vote-key">5iZ5PQPy5Z9XDnkfoWPi6nvUgtxWnRFwZ36WaftPuaVM</span></p>
+                <button class="copy-btn" onclick="copyVoteKey()" title="Copy this key to stake to this validator">Copy Vote Key</button>
+                <p class="copy-confirmation" id="copy-confirmation">Vote key copied to clipboard!</p>
+            </div>
+
+            <h2>Security</h2>
+            <p>
+                Our validator is protected by stringent security measures. We implement firewall policies, blocking all unnecessary ports, and utilize a TPU Traffic Classifier to detect and rate-limit malicious behaviors, maintaining a secure network environment.
+            </p>
+        </div>
+
+        <footer>
+            <p>Validator © Meyerbro +MEV. Solana Validator since 2021.</p>
+        </footer>
+    </div>
+
+    <script>
+        function copyVoteKey() {
+            const voteKey = document.getElementById("vote-key").innerText;
+            navigator.clipboard.writeText(voteKey)
+                .then(() => {
+                    const confirmation = document.getElementById("copy-confirmation");
+                    confirmation.classList.add("active");
+                    setTimeout(() => confirmation.classList.remove("active"), 2000);
+                })
+                .catch(err => {
+                    console.error("Error copying vote key:", err);
+                });
+        }
+    </script>
+
+</body>
+</html>
